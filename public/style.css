@@ -1,0 +1,32 @@
+.web{
+	display: flex;
+	align-items: center;
+	justify-content: left;
+	padding: 30px 30px;
+ 
+ }
+ .web .title{
+	color: #1a0101; 
+	font-size: 67px;
+ }
+ .web a{
+	 display:flex;
+     justify-content: end;
+	 text-decoration:none;
+	 font-size: 27px;
+	 font-weight: 600;
+	 margin-right: 25px;
+ }
+ .web a:hover{
+	 color: rgba(236, 71, 71, 0.856);
+	 padding: 8px 30px;
+	 border: 2px solid #bb642b;
+ }
+ 
+ header {
+	 text-align: center;
+	 padding: 10px;
+	background-image: url(cloud.jpg);
+	 background-size: cover;
+ }
+ 

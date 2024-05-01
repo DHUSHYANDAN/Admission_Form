@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AdmissionForm</title>
+<style>
+     .a:hover{
+            
+            padding: 30px;
+
+            border: 2px solid black rgb(248,247,242);
+            width: 550px;
+            height: 450px;
+            border: 2px solid rgb(9, 9, 9);
+            background-image: url(firo.jpeg);
+            background-size: cover;
+            box-shadow: 0px 0px 15px rgb(117, 78, 46);
+
+        
+        }
+        select{
+            width: 170px;
+            margin: 10px;
+        }
+        select:focus{
+            min-width: 170px;
+            width: auto;
+        }
+    </style>
+</head>
+<body class="c">
+    <center>
+        <div class="a">
+        <h1 style="text-align: center; border: solid black; border-radius: 3px; width: 350px; background-color: rgb(250, 243, 243);">Admission Form</h1>
+        
+            <form action="/sign_up" method="post">
+                <b>
+                    <input type="text" name="name" id="name" placeholder="Full Name *" height="200px" required/><br><br>
+                    <input type="text" name="phno" id="phno" placeholder="Phone Number *" height="200px" required/><br><br>
+                    <input type="text" name="email" id="email" placeholder="Email Address *" height="200px" required/><br><br>
+                    <input type="text" name="address" id="address" placeholder="Address *" height="200px" required/><br><br>
+                    <select 
+                     id="Course" name="course">
+
+                     
+                       <option value="Course">Course</option>
+                       <option value="MCA">MCA</option>
+                       <option value="MBA">MBA</option>
+                       <option value="M Tech">M Tech</option>
+                       <option value="B Tech">B Tech</option>
+                       <option value="BE Civil">BE Civil</option>
+                       <option value="Robotics">Robotics</option>
+                       <option value="AI">AI</option>
+                    </select><br><br>
+
+                    
+                    <input type="submit"/><br><br>
+                    
+
+
+                </b>
+            </form></div>
+        </center>
+        
+
+</body>
+                    
+    
+</body>
+</html>         
+                  
