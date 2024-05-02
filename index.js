@@ -16,11 +16,11 @@ db.on('error',()=> console.log("Error in Connecting to Database"))
 db.once('open',()=> console.log("Connected to Database"))
 
 app.post("/sign_up",(req,res) => {
-    var name= req.body.name
-    var phno=req.body.phno
-    var email=req.body.email
+    var name= req.body.Name
+    var phno=req.body.Phonenumber
+    var email=req.body.Email
     var address=req.body.address
-    var course=req.body.course
+    var course=req.body.select
 
     var data={
         "name":name,
