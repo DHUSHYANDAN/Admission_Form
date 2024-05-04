@@ -23,8 +23,8 @@
 
         }
         .a:hover {
-    background-color: #ffffff; /* Change the background color on hover */
-    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5); /* Change the box shadow on hover */
+    background-color: #ffffff;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.5);
 }
 
         .btn-primary:hover {
@@ -33,17 +33,6 @@
             background-color: green;
             border-color: #204d74;
         }
-
-        select {
-            width: 170px;
-            margin: 10px;
-        }
-
-        select:focus {
-            min-width: 170px;
-            width: auto;
-        }
-
    
         /* for form validation */
         .fi .eror {
@@ -51,7 +40,7 @@
             font-size: 13px;
         }
 
-        .fi.error input {
+        /* .fi.error input {
 
             border: solid 0.5px #ff6347;
 
@@ -85,14 +74,14 @@ box-shadow: 0px 0px 0px 4px rgb(255, 0, 0, 0.3);
 
 
             box-shadow: 0px 0px 0px 4px rgb(255, 0, 0, 0.3);
-        }
+        } */
 
         .fi .sucess {
             color: green;
             font-size: 13px;
         }
 
-        .fi.success input {
+        /* .fi.success input {
 
             border: solid 0.5px lightgreen;
         }
@@ -119,7 +108,7 @@ box-shadow: 0px 0px 0px 4px rgb(0, 255, 0, 0.3);
         .fi.success textarea:focus {
 
             box-shadow: 0px 0px 0px 4px rgb(0, 255, 0, 0.3);
-        }
+        } */
     </style>
 </head>
 
@@ -144,7 +133,7 @@ box-shadow: 0px 0px 0px 4px rgb(0, 255, 0, 0.3);
                         <div class="eror"></div>
                     </div>
                     <div class="fi mb-2">
-                        <input type="text" class="form-control mb-2 mt-3 w-50" id="email" placeholder="Enter email"
+                        <input type="text" class="form-control  mb-2 mt-3 w-50" id="email" placeholder="Enter email"
                             name="Email" />
                         <div class="eror"></div>
                     </div>
@@ -233,16 +222,16 @@ box-shadow: 0px 0px 0px 4px rgb(0, 255, 0, 0.3);
 
             function errorMessage(input, message) {
                 const field = input.parentElement;
-                field.classList.remove("success");
-                field.classList.add("error");
+                input.classList.remove("is-valid");
+                input.classList.add("is-invalid");
                 const errorElement = field.querySelector(".eror");
                 errorElement.textContent = message;
             }
 
             function successMessage(input) {
                 const field = input.parentElement;
-                field.classList.remove("error");
-                field.classList.add("success");
+                input.classList.remove("is-invalid");
+                input.classList.add("is-valid");
                 const errorElement = field.querySelector(".eror");
                 errorElement.textContent = "";
 
