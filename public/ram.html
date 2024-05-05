@@ -202,11 +202,12 @@ box-shadow: 0px 0px 0px 4px rgb(0, 255, 0, 0.3);
                         allValid = false;
                     }
                     else if (input === phonenumber && !isValidPhoneNumber(value)) {
-                        errorMessage(input, "Please enter a valid  number ");
+                        errorMessage(input, "Please enter a valid  number (Numbers only 0 to 9) ");
                         allValid = false;
                     }
                     else if (input === email && !isValidEmail(value)) {
-                        errorMessage(input, "Please enter a valid  Email or Gmail ");
+                        errorMessage(input, "Please enter a valid email address (Eg: abcd12@gmail.com)");
+
                         allValid = false;
                     }
 
@@ -262,6 +263,7 @@ box-shadow: 0px 0px 0px 4px rgb(0, 255, 0, 0.3);
             textarea.addEventListener("blur", () => checkRequired([textarea]));
             textarea.addEventListener("keypress", () => checkRequired([textarea]));
             statusSelect.addEventListener("blur", checkSelection);
+            
            
            
             form.addEventListener("submit", function (event) {
