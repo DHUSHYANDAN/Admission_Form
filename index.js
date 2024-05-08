@@ -1,8 +1,10 @@
 var express=require("express")
+const app=express()
+const dotenv =require('dotenv')
+dotenv.config();
+
 var bodyParser=require("body-parser")
 var mongoose=require("mongoose")
-
-const app=express()
 
 app.use(bodyParser.json())
 app.use(express.static('public'))
@@ -10,7 +12,11 @@ app.use(bodyParser.urlencoded({
     extended:true
 }))
 
-mongoose.connect('mongodb://localhost:27017')
+const PORT=process.env.Port || 8000;
+const Mongourl=process.env.Mongo_url;
+mongoose.connect(Mongourl)
+
+
 var db=mongoose.connection
 db.on('error',()=> console.log("Error in Connecting to Database"))
 db.once('open',()=> console.log("Connected to Database"))
@@ -36,7 +42,7 @@ app.post("/sign_up",(req,res) => {
         }
         console.log("Record Inserted Succesfully")
     })
-    return res.redirect('sign.html')
+    return res.redirect('verification.html')
 })
 
 app.get("/",(req,res) => {
@@ -44,8 +50,8 @@ app.get("/",(req,res) => {
         "Allow-acces-Allow-Origin":'*'
     })
     return res.redirect('index.html')
-}).listen(5000);
+}),app.listen(PORT);
 
 
 
-console.log("Listening on port 5000")
+console.log("Listening on port", `${PORT}`)
