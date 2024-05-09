@@ -1,57 +1,68 @@
-var express=require("express")
-const app=express()
-const dotenv =require('dotenv')
+var express = require("express");
+const app=express();
+const dotenv = require('dotenv');
 dotenv.config();
 
-var bodyParser=require("body-parser")
-var mongoose=require("mongoose")
+// var bodyParser=require("body-parser")
+const mongoose=require("mongoose")
 
-app.use(bodyParser.json())
-app.use(express.static('public'))
-app.use(bodyParser.urlencoded({
-    extended:true
-}))
+// app.use(bodyParser.json())
+// app.use(express.static('public'))
+// app.use(bodyParser.urlencoded({
+//     extended:true
+// }))
 
-const PORT=process.env.Port || 8000;
-const Mongourl=process.env.Mongo_url;
-mongoose.connect(Mongourl)
+const uri=process.env.ATLAS_URI;
+
+mongoose.connect(uri)
+  .then(() => {
+    console.log('Connected to MongoDB successfully');
+  })
+  .catch((err) => {
+    console.error('Error connecting to MongoDB:', err);
+  });
+
+// const dbconnection=mongoose.connection
+// dbconnection.on('error', (err) => {
+//     console.error('Error connecting to MongoDB:', err);
+//   });
+// dbconnection.once('open',()=>{
+//     console.log("Connected to Database  successfully");
+// })
+
+// app.post("/sign_up",(req,res) => {
+//     var name= req.body.Name
+//     var phno=req.body.Phonenumber
+//     var email=req.body.Email
+//     var address=req.body.address
+//     var course=req.body.select
+
+//     var data={
+//         "name":name,
+//         "phno":phno,
+//         "email":email,
+//         "address":address,
+//         "course":course
+//     }
+//     dbconnection.collection('fam').insertOne(data,(err,collection) => {
+//         if(err){
+//             throw err;
+
+//         }
+//         console.log("Record Inserted Succesfully")
+//     })
+//     return res.redirect('verification.html')
+// })
+
+// app.get("/",(req,res) => {
+//     res.set({
+//         "Allow-acces-Allow-Origin":'*'
+//     })
+//     return res.redirect('index.html')
+//     // res.send("hio")
+// });
 
 
-var db=mongoose.connection
-db.on('error',()=> console.log("Error in Connecting to Database"))
-db.once('open',()=> console.log("Connected to Database"))
-
-app.post("/sign_up",(req,res) => {
-    var name= req.body.Name
-    var phno=req.body.Phonenumber
-    var email=req.body.Email
-    var address=req.body.address
-    var course=req.body.select
-
-    var data={
-        "name":name,
-        "phno":phno,
-        "email":email,
-        "address":address,
-        "course":course
-    }
-    db.collection('fam').insertOne(data,(err,collection) => {
-        if(err){
-            throw err;
-
-        }
-        console.log("Record Inserted Succesfully")
-    })
-    return res.redirect('verification.html')
+app.listen(5000,()=>{
+    console.log("Listening on port 5000");
 })
-
-app.get("/",(req,res) => {
-    res.set({
-        "Allow-acces-Allow-Origin":'*'
-    })
-    return res.redirect('index.html')
-}),app.listen(PORT);
-
-
-
-console.log("Listening on port", `${PORT}`)
