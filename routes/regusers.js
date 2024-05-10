@@ -2,6 +2,9 @@ const express=require('express');
 const router=express.Router();
 const regUsers=require('../model/reguser')
 const bcrypt = require('bcrypt');
+const jwt=require('jsonwebtoken');
+const dotenv = require('dotenv');
+dotenv.config();
 
 
 router.route('/').get((req,res)=>{
@@ -32,15 +35,18 @@ bcrypt.genSalt(10,(err,salt)=>{
 
 router.route('/login').post(async(req,res)=>{
     try{
-        var user=await regUsers.findOne({email:req.body.email});
+        const user=await regUsers.findOne({email:req.body.email});
+   
         if(!user){
             return res.status(400).send('user not found please register');
         }
-        var validPassword= await bcrypt.compare(req.body.password,user.password);
+        const validPassword= await bcrypt.compare(req.body.password,user.password);
         if(!validPassword){
             return res.send("password is incorrect !!")
         }
-        res.send('Login successfull')
+        //  res.send('Login successfull')
+        const accessToken = jwt.sign(user.toJSON(), process.env.ACCESS_TOKEN);
+        res.json({ accessToken: accessToken });
     }
     catch(error){
 
