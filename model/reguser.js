@@ -9,10 +9,5 @@ const reguserShema=new schema({
 },{
     timestamps:true
 });
-const regusers=mongoose.model('Reg_users',reguserShema);
- module.exports=regusers;
-// app.get("/get",async(req,res)=>{
-//     const userData=await regusers.find();
-//     // res.send("hi guys");
-//     res.json(userData);
-// });
+const regUsers=mongoose.model('Reg_users',reguserShema);
+ module.exports=regUsers;

@@ -1,19 +1,25 @@
 var express = require("express");
 const app=express();
+
+const mongoose=require("mongoose")
+const reguserRouter=require('./routes/regusers')
 const dotenv = require('dotenv');
+// const cors=require('cors');
 dotenv.config();
 
+app.use(express.json());
 // var bodyParser=require("body-parser")
-const mongoose=require("mongoose")
+
+
 
 // app.use(bodyParser.json())
-// app.use(express.static('public'))
-// app.use(bodyParser.urlencoded({
+//app.use(express.static('public'))
+// app.use(bodyParser.urlencoded({ 
 //     extended:true
 // }))
 
 const uri=process.env.ATLAS_URI;
-
+ 
 mongoose.connect(uri)
   .then(() => {
     console.log('Connected to MongoDB successfully');
@@ -62,6 +68,8 @@ mongoose.connect(uri)
 //     // res.send("hio")
 // });
 
+
+app.use('/user',reguserRouter);
 
 app.listen(5000,()=>{
     console.log("Listening on port 5000");
