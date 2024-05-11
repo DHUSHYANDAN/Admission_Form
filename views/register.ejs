@@ -1,46 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <link rel="icon" href="/images/icon.jpg" type="image/png">
-  <link rel="stylesheet" href="login.css">
-  
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <link rel="stylesheet" href="/Register.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
+    
 </head>
-
 <body>
-
-  <div class="wrapper">
-    <h1>ACCESS</h1>
-
-    <form action="/Login" id="form" method="post">
-        <div class="fi ">
-            <input type="text" class="form-control  mb-1 " id="email" placeholder="Enter email"
-                name="Email" />
-            <div class="eror"><span class="nnn"></span></div>
+    
+<div class="box-form">
+    <div class="left">
+        <div class="overlay">
+            <h1>KVCET</h1>
         </div>
-        <div class="fi flex mt-4 ">
-                    
-            <input type="password" value="" class="form-control mb-2" id="password" placeholder="Enter password" name="password" /> <button id="togglePassword" type="button" class="toggle-password-btn flex2"><i class="fas fa-eye-slash"></i></button> 
+    </div>
         
-            <div class="eror"></div>
-       
+    <div class="right">
+        <h1><b> Registration </b></h1>
+        <div class="inputs">
+            <form action="/login" id="form" autocomplete="off" method="post" onsubmit="return validateForm()">
+                <div class="fi   mt-1">
+
+                    <input type="text" class="form-control mb-1 " id="username" placeholder="Enter Name "
+                        name="Name" />
+                    <div class="eror "><span class="nnn"></span></div>
+                </div>
+                <div class="fi  mt-1">
+                    <input type="text" class="form-control mb-1 " id="phonenumber"
+                        placeholder="Enter Phone number" name="Phonenumber" />
+                    <div class="eror"><span class="nnn"></span></div>
+                </div>
+                <div class="fi ">
+                    <input type="text" class="form-control  mb-1 " id="email" placeholder="Enter email"
+                        name="Email" />
+                    <div class="eror"><span class="nnn"></span></div>
+                </div>
+                <div class="fi flex mt-1 ">
+                    
+                    <input type="password" class="form-control mb-2" id="password" placeholder="Enter password"  name="password" /> <button id="togglePassword" type="button" class="toggle-password-btn flex2"><i class="fas fa-eye-slash"></i></button> 
+                
+                    <div class="eror"></div>
+               
+                </div>
+                
+               
+                <br>
+                <button type="submit"   class="btn">Submit</button>
+            </form>
         </div>
-      <input type="submit" value="Login" onclick="myfunction()">
-    </form>
-    <p>Don't have an account? <a class="link" href="Register.html">SignUp</a></p>
-  </div>
+    </div>
+</div>
 
 </body>
+
 <script>
-     document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
        const form = document.querySelector("#form");
-       const inputs = form.querySelectorAll("#email,#password");
+       const inputs = form.querySelectorAll("#username,#phonenumber,#email,#password");
+       const username = form.querySelector("#username");
+       const phoneNumber = form.querySelector("#phonenumber");
        const email = form.querySelector("#email");
        const password=form.querySelector("#password")
  
@@ -53,12 +75,23 @@
                            errorMessage(input, `Please enter your ${getName(input)}`);
                            allValid = false;
                        }
-                       
+                       else if (input === username && !validateName(value)) {
+                           errorMessage(input, "Please enter a valid  Name (characters only A to Z) ");
+                           allValid = false;
+                       }
+                       else if (input === phonenumber && !isValidPhoneNumber(value)) {
+                           errorMessage(input, "Please enter a valid  number (Numbers only ) ");
+                           allValid = false;
+                       }
                        else if (input === email && !isValidEmail(value)) {
                            errorMessage(input, "Please enter a valid email address (Eg: abcd12@gmail.com)");
    
                            allValid = false;
-                       }
+                       }else if (input === password && !isValidPassword(value)) {
+                        errorMessage(input, "Password must be at least 6 characters long");
+                        allValid = false;
+                          }
+   
                        else {
                            successMessage(input);
                        }
@@ -67,6 +100,9 @@
                }
    
               
+   
+   
+   
                // this for geting the elements by it attribute name
                function getName(input) {
                    return input.getAttribute("name");
@@ -89,9 +125,13 @@
    }
                 //array la pass pandrom so [] kulatha varanum
                 
+                username.addEventListener("blur", () => checkRequired([username]));
+            
+               phoneNumber.addEventListener("blur", () => checkRequired([phoneNumber]));
                email.addEventListener("blur", () => checkRequired([email]));
                password.addEventListener('blur',()=>checkRequired([password]));
            
+              
               
                form.addEventListener("submit", function (event) {
                
@@ -99,10 +139,10 @@
                    const isRequiredValid = checkRequired(inputs);
                    // Check if all validations pass
                    if (isRequiredValid ) {
-                       alert("Login successfull !");
+                       alert("Registered successfully!");
                    } else {
                        event.preventDefault();
-                       alert("Please complete all fields before before clicking the login .");
+                       alert("Please complete all fields before clicking the submit.");
                        console.log("Form submission is prevented due to invalid input(s)");
    
                    }
@@ -119,9 +159,12 @@
                }
                function isValidEmail(email) {
                    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-   
                    return emailRegex.test(email);
                }
+                   function isValidPassword(password) {
+                   return password.length >= 6;
+                 } 
+                  
               
    
               
@@ -139,6 +182,6 @@
     });
 
            });
-</script>
-
+   
+       </script>
 </html>
