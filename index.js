@@ -1,6 +1,7 @@
 var express = require("express");
 const mongoose=require("mongoose")
 const reguserRouter=require('./routes/regusers')
+const aduserRouter=require('./routes/adusers')
 const dotenv = require('dotenv');
 // const cors=require('cors');
 
@@ -9,6 +10,8 @@ const app=express();
 app.use(express.json());
 const uri=process.env.ATLAS_URI;
  
+
+
 mongoose.connect(uri)
   .then(() => {
     console.log('Connected to MongoDB successfully');
@@ -18,6 +21,7 @@ mongoose.connect(uri)
   });
 
 app.use('/user',reguserRouter);
+app.use('/aduser',aduserRouter);
 
 app.listen(5000,()=>{
     console.log("Listening on port 5000");
