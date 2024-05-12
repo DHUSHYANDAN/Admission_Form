@@ -82,6 +82,7 @@ input[type="password"]::-webkit-outer-spin-button {
     pointer-events: none;
 }
 
+.email.error{color:red;}
 
 .inputs{
   /* border:solid black; */

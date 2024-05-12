@@ -7,7 +7,7 @@ const handleErrors = (err) => {
     let errors = { email: '', password: '', username: '', phonenumber: '' };
     // duplicate email error
     if (err.code === 11000) {
-        errors.email = 'that email is already registered';
+        errors.email = 'This email is already registered';
         return errors;
     }
     // validation errors
