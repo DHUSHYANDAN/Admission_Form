@@ -8,46 +8,40 @@
     <link rel="stylesheet" href="/Register.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
-
 </head>
 
 <body>
-
     <div class="box-form">
         <div class="left">
             <div class="overlay">
                 <h1>KVCET</h1>
             </div>
         </div>
-
         <div class="right">
             <h1><b> Registration </b></h1>
             <div class="inputs">
-                <form action="/login" id="form" autocomplete="off" method="post">
-                    <div class="fi   mt-1">
-
-                        <input type="text" class="form-control mb-1 " id="username" placeholder="Enter Name "
+                <form id="form" autocomplete="off" method="post">
+                    <div class="fi mt-1">
+                        <input type="text" class="form-control mb-1" id="username" placeholder="Enter Name"
                             name="Name" />
-                        <div class="eror "><span class="nnn"></span></div>
+                        <div class="name_error"></div>
                     </div>
-                    <div class="fi  mt-1">
-                        <input type="text" class="form-control mb-1 " id="phonenumber" placeholder="Enter Phone number"
+                    <div class="fi mt-1">
+                        <input type="text" class="form-control mb-1" id="phonenumber" placeholder="Enter Phone number"
                             name="Phonenumber" />
-                        <div class="eror"><span class="nnn"></span></div>
+                        <div class="phonenumber_error"></div>
                     </div>
-                    <div class="fi ">
-                        <input type="text" class="form-control  mb-1 " id="email" placeholder="Enter email"
+                    <div class="fi">
+                        <input type="text" class="form-control mb-1" id="email" placeholder="Enter email"
                             name="Email" />
-                        <div class="eror"><span class="nnn"></span></div>
+                        <div class="email_error"></div>
                     </div>
-                    <div class="fi flex mt-1 ">
-
+                    <div class="fi flex mt-1">
                         <input type="password" class="form-control mb-2" id="password" placeholder="Enter password"
-                            name="password" /> <button id="togglePassword" type="button"
-                            class="toggle-password-btn flex2"><i class="fas fa-eye-slash"></i></button>
-
-                        <div class="eror"></div>
+                            name="Password" />
+                        <button id="togglePassword" type="button" class="toggle-password-btn flex2"><i
+                                class="fas fa-eye-slash"></i></button>
+                        <div class="password_error"></div>
                     </div>
                     <br>
                     <button type="submit" class="btn">Submit</button>
@@ -56,119 +50,43 @@
         </div>
     </div>
 
-</body>
+    <script>
+        const form = document.getElementById('form');
+        const nameError = document.querySelector('.name_error');
+        const phonenumberError = document.querySelector('.phonenumber_error');
+        const emailError = document.querySelector('.email_error');
+        const passwordError = document.querySelector('.password_error');
 
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const form = document.querySelector("#form");
-        const inputs = form.querySelectorAll("#username,#phonenumber,#email,#password");
-        const username = form.querySelector("#username");
-        const phoneNumber = form.querySelector("#phonenumber");
-        const email = form.querySelector("#email");
-        const password = form.querySelector("#password")
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
+            // get values
+            const username = form.Name.value;
+            const phonenumber = form.Phonenumber.value;
+            const email = form.Email.value;
+            const password = form.Password.value;
 
-        function checkRequired(inputs) {
-            let allValid = true;
-            inputs.forEach((input) => {
-                const value = input.value.trim();
-                if (value === "") {
-                    errorMessage(input, `Please enter your ${getName(input)}`);
-                    allValid = false;
+            try {
+                const res = await fetch('/register', {
+                    method: 'POST',
+                    body: JSON.stringify({ username, phonenumber, email, password }),
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                const data = await res.json();
+                console.log(data);
+                if (data.errors) {
+                    nameError.textContent = data.errors.username;
+                    phonenumberError.textContent = data.errors.phonenumber;
+                    emailError.textContent = data.errors.email;
+                    passwordError.textContent = data.errors.password;
                 }
-                else if (input === username && !validateName(value)) {
-                    errorMessage(input, "Please enter a valid  Name (characters only A to Z) ");
-                    allValid = false;
-                }
-                else if (input === phonenumber && !isValidPhoneNumber(value)) {
-                    errorMessage(input, "Please enter a valid  number (Numbers only ) ");
-                    allValid = false;
-                }
-                else if (input === email && !isValidEmail(value)) {
-                    errorMessage(input, "Please enter a valid email address (Eg: abcd12@gmail.com)");
-
-                    allValid = false;
-                } else if (input === password && !isValidPassword(value)) {
-                    errorMessage(input, "Password must be at least 6 characters long");
-                    allValid = false;
-                }
-
-                else {
-                    successMessage(input);
-                }
-            });
-            return allValid;
-        }
-
-
-
-
-
-        // this for geting the elements by it attribute name
-        function getName(input) {
-            return input.getAttribute("name");
-        }
-
-        function errorMessage(input, message) {
-            const field = input.parentElement;
-            field.classList.remove("success");
-            input.classList.add("error");
-            const errorElement = field.querySelector(".eror");
-            errorElement.textContent = message;
-        }
-
-        function successMessage(input) {
-            const field = input.parentElement;
-            input.classList.remove("error");
-            field.classList.add("success");
-            const errorElement = field.querySelector(".eror");
-            errorElement.textContent = "";
-        }
-        //array la pass pandrom so [] kulatha varanum
-
-        username.addEventListener("blur", () => checkRequired([username]));
-
-        phoneNumber.addEventListener("blur", () => checkRequired([phoneNumber]));
-        email.addEventListener("blur", () => checkRequired([email]));
-        password.addEventListener('blur', () => checkRequired([password]));
-
-
-
-        form.addEventListener("submit", function (event) {
-
-            // Run all validation functions
-            const isRequiredValid = checkRequired(inputs);
-            // Check if all validations pass
-            if (isRequiredValid) {
-                alert("Registered successfully!");
-            } else {
-                event.preventDefault();
-                alert("Please complete all fields before clicking the submit.");
-                console.log("Form submission is prevented due to invalid input(s)");
-
+            } catch (err) {
+                console.log(err);
             }
         });
 
-        //this for validating the individual properties
-        function validateName(name) {
-            return /^[A-Za-z\s]+$/.test(name);
-        }
-
-        function isValidPhoneNumber(phoneNumber) {
-            const phoneRegex = /^[0-9]{10}$/;
-            return phoneRegex.test(phoneNumber);
-        }
-        function isValidEmail(email) {
-            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-            return emailRegex.test(email);
-        }
-        function isValidPassword(password) {
-            return password.length >= 6;
-        }
-
         const passwordInput = document.getElementById('password');
         const togglePasswordButton = document.getElementById('togglePassword');
- 
 
         togglePasswordButton.addEventListener('click', function () {
             if (passwordInput.type === 'password') {
@@ -179,36 +97,7 @@
                 togglePasswordButton.innerHTML = '<i class="fas fa-eye-slash"></i>';
             }
         });
-
-    });
-
-    const form = document.querySelector('form');
-    
-    form.addEventListener('submit', async (e) => {
-        e.preventDefault();
-
-        // get values
-        const username = form.username.value;
-        const phonenumber = form.phonenumber.value;
-        const email = form.email.value;
-        const password = form.password.value;
-        try {
-            const res = await fetch('/register', {
-                method: 'POST',
-                body: JSON.stringify({ username, phonenumber, email, password }),
-                headers: { 'Content-Type': 'application/json' }
-            })
-            const data = await res.json();
-      console.log(data);
-        }
-        catch (err) {
-            console.log(err);
-        }
-
-
-    });
-
-
-</script>
+    </script>
+</body>
 
 </html>

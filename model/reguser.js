@@ -11,7 +11,7 @@ const reguserShema = new schema({
 
     phonenumber: {
         type: String, required: [true, 'Please enter an phonenumber'], minlength: [10, 'Minimum phonenumber length is 10 numbers'],
-
+        maxlength: [10, 'Maximum phone number length is 10 numbers'],
         validate: [isMobilePhone, "Please enter a valid phone number"]
     },
 
