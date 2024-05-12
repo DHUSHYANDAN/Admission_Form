@@ -1,22 +1,18 @@
 const regUser = require('../model/reguser');
+const jwt = require('jsonwebtoken');
 
-// handle errors
+// handle errors for backend
 const handleErrors = (err) => {
     console.log(err.message, err.code);
     let errors = { email: '', password: '', username: '', phonenumber: '' };
-
     // duplicate email error
     if (err.code === 11000) {
         errors.email = 'that email is already registered';
         return errors;
     }
-
     // validation errors
     if (err.message.includes('Reg_users validation failed')) {
-        // console.log(err);
         Object.values(err.errors).forEach(({ properties }) => {
-            // console.log(val);
-            // console.log(properties);
             errors[properties.path] = properties.message;
         });
     }
@@ -33,11 +29,22 @@ module.exports.login_get = (req, res) => {
     res.render('login');
 }
 
+
+//for jwt token perpous
+const maxAge = 3 * 24 * 60 * 60;
+const createToken = (id) => {
+    return jwt.sign({ id }, process.env.ACCESS_TOKEN, {
+        expiresIn: maxAge
+    });
+}
+
 module.exports.register_post = async (req, res) => {
     const { username, email, password, phonenumber } = req.body;
     try {
         const reguser = await regUser.create({ username, email, password, phonenumber });
-        res.status(201).json(reguser);
+        const token = createToken(reguser._id);
+        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+        res.status(201).json({ reguser: reguser._id });
     }
     catch (err) {
 

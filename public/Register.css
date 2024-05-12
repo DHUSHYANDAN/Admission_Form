@@ -72,6 +72,17 @@
   right: 10px;
   }
 
+/* Hide the default password eye */
+input[type="password"]::-ms-reveal,
+input[type="password"]::-webkit-contacts-auto-fill-button,
+input[type="password"]::-webkit-inner-spin-button,
+input[type="password"]::-webkit-outer-spin-button {
+    display: none;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+
 .inputs{
   /* border:solid black; */
   padding:10px;

@@ -37,25 +37,3 @@ app.get('/', (req, res) => res.render('home'));
 app.get('/admission', (req, res) => res.render('admission'));
 app.use(authRoutes)
 
-// cookies
-// const cookieParser = require('cookie-parser');
-// app.use(cookieParser());
-
-app.get('/set-cookies', (req, res) => {
-
-  // res.setHeader('Set-Cookie', 'newUser=true');
-  res.cookie('newuser', false);
-  res.cookie('emplouser', true, { maAge: 1000 * 60 * 60 * 24, httpOnly:true });
-
-  res.send('you got the cookies !');
-
-});
-
-app.get('/read-cookies', (req, res) => {
-  const cookies = req.cookies;
-  console.log(cookies.newuser);
-
-  res.json(cookies);
-
-
-});
