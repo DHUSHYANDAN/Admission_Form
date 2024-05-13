@@ -12,8 +12,21 @@
 </head>
 
 <body>
-
-    <div class="wrapper">
+    <div class="navbars mb-3">
+        <div class="navigate">
+            <img class="logo" src="/kvcet logo.png">
+            <nav class="web">
+                <a href="">About</a>
+                <a href="/">Home</a>
+                <a href="/contact">Contact</a>
+                
+                <a href="/register">Register</a>
+            </nav>
+        </div>
+    </div>
+    
+<div class="containe p-5  m-2">
+    <div class="wrapper border-2 ">
         <h1>ACCESS</h1>
 
         <form action="/Login" id="form" method="post">
@@ -33,9 +46,10 @@
             </div>
             <input type="submit" value="Login">
         </form>
-        <p>Don't have an account? <a class="link" href="/Register">SignUp</a></p>
+        <p>Don't have an account ? <a class="link" href="/Register">SignUp</a></p>
+        <p>use another accout ! <a class="link" href="/logout">Logout</a></p>
     </div>
-
+</div>
 </body>
 <script>
     document.addEventListener("DOMContentLoaded", function () {

@@ -3,6 +3,53 @@
     cursor: grab;
   }
 
+   /* Navigation Styles */
+   .navbars {
+    padding: 5px;
+  }
+  
+  .navigate {
+    display: flex;
+    justify-content: space-between;
+    background-image: url("/banner_bg.png");
+    background-size: cover;
+    align-items: center;
+  }
+  
+  .logo {
+    padding: 5px;
+    height: 100px;
+  }
+
+
+
+  .web {
+    position: relative;
+    padding: 10px 10px;
+    text-decoration: none;
+    font-size: 17px;
+    overflow: hidden;
+  }
+  
+  .web a {
+    color: #f2f2f2;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 1% 20px;
+  }
+  
+  .web a:hover {
+    background-color: #ddd;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    color: black;
+  }
+
+
+
 
 //design for register
        
