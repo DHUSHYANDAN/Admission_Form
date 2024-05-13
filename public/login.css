@@ -7,9 +7,9 @@
 }
 
 
-
+.email.error{color:red;font-size:14px;}
 body {
-    background-image: url("login.bg.jpeg");
+    background-image: url("/blue.jpg");
     width: 100%;
     height: 100vh;
     display: flex;

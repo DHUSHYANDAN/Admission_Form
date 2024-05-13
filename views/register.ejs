@@ -39,7 +39,7 @@
                     <div class="fi ">
                         <input type="text" class="form-control  mb-1 " id="email" placeholder="Enter email"
                             name="Email" />
-                        <div class="eror"></div>
+                      
                         <div class="email error"></div>
                     </div>
                     <div class="fi flex mt-1 ">
@@ -138,7 +138,7 @@
         form.addEventListener("submit", function (event) {
             event.preventDefault();
 
-            // Run all validation functions
+          
             const isRequiredValid = checkRequired(inputs);
             // Check if all validations pass
             if (isRequiredValid) {
@@ -146,7 +146,7 @@
             } else {
 
                 alert("Please complete all fields before clicking the submit.");
-                console.log("Form submission is prevented due to invalid input(s)");
+                // console.log("Form submission is prevented due to invalid input(s)");
 
             }
         });
@@ -191,7 +191,6 @@
                 headers: { 'Content-Type': 'application/json' }
             })
             const data = await res.json();
-            console.log(data);
             if (res.ok) {
                 // Registration successful
                 alert("Registered successfully!");
@@ -201,15 +200,6 @@
                     emailError.textContent = data.email;
                     // alert(data.email);
                 }
-                // if (data.password) {
-                //     alert(data.password);
-                // }
-                // if (data.username) {
-                //     alert(data.username);
-                // }
-                // if (data.phonenumber) {
-                //     alert(data.phonenumber);
-                // }
             }
             if (data.reguser) {
                 location.assign('/');

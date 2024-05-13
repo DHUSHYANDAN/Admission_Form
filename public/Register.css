@@ -82,7 +82,7 @@ input[type="password"]::-webkit-outer-spin-button {
     pointer-events: none;
 }
 
-.email.error{color:red;}
+.email.error{color:red;font-size:14px;}
 
 .inputs{
   /* border:solid black; */
@@ -191,4 +191,32 @@ input[type="password"]::-webkit-outer-spin-button {
   .box-form .right .btn:hover{
     background:green;
     color:white;
+  }
+
+  /* Footer Styles */
+  .footer {
+    text-align: center;
+    padding: 1px;
+    margin:5px;
+    border-radius:15px;
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .social-icons a {
+    color: white;
+    margin: 0 10px;
+    font-size: 24px;
+    text-decoration: none;
+    align-items: center;
+  }
+  
+  .copyright {
+    font-size: 14px;
+    color: #666;
   }

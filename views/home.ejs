@@ -1,72 +1,111 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>website</title>
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta content="text/html; charset=iso-8859-2" http-equiv="Content-Type">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="/style.css">
-    <style>
-        .mySlides {
-            display: none;
-        }
-    </style>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+
+    <title>website</title>
 </head>
 
 <body>
 
-    <header>
-        <div class="header"></div>
-    </header>
-    <div class="web">
+    <!-- Navigation -->
+    <div class="navbars">
+        <div class="navigate">
+            <img class="logo" src="/kvcet logo.png">
+            <nav class="web">
+                <a href="/admission">Admission</a>
+                <a href="">About</a>
+                <a href="/contact">Contact</a>
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+            </nav>
+        </div>
+    </div>
+    <!-- Course Section -->
+    <div class="course forbgimages " id="course_call">
 
-        <img src="/kvcet logo.png">
-        <b>
-            <h2>KARAPAGA VINAYAGA COLLEGE OF ENGINEERING AND TECHNOLOGY</h2>
-        </b>
+        <div class="dc ">
 
-        <a href="/admission">Admission</a>
-        <a href="/login">Login</a>
-        <a href="/register">Registration</a>
-
+            <h1 class="text-black text-center ">Course We Offer</h1>
+            <p class="text-black">"Explore a diverse range of computer courses offered at our college, and successful
+                careers in
+                various fields."</p>
+        </div>
+        <div class="p-5">
+            <div class="row justify-center">
+                <div class="course-col col-md-3 m-2 ">
+                    <h2 class="text-center">BE-CS</h2>
+                    <p>Engineering in Computer Science, software development, algorithms, and other core concepts in
+                        computer science. This degree prepares students for careers in various fields such as software
+                        engineering, cybersecurity and more."</p>
+                </div>
+                <div class="course-col col-md-3 m-2">
+                    <h2 class="text-center">BE-IT </h2>
+                    <p>Information Technology it focus on the networks, software development, and information management
+                        and often pursue careers as software engineers, IT consultants, systems analysts, web
+                        developers. </p>
+                </div>
+                <div class="course-col col-md-3 m-2">
+                    <h2 class="text-center">ADS</h2>
+                    <p> AI and Data Science is particularly powerful, as AI techniques can be applied to analyze and
+                        derive insights from vast amounts of data ,AI techniques such as machine learning, and computer
+                        vision </p>
+                </div>
+            </div>
+        </div>
     </div>
 
 
+    <!-- Footer Section -->
+    <div class="footer  bg-dark p-5">
+        <div class="container-fluid mt-3 text-white bg-dark ">
+            <div class="row m-2 mb-5 ">
+                <div class="col-sm-4 mb-2 "><i class="   fas fa-map-marker-alt"></i>&nbsp;&nbsp;KVCET , Madhurandhagam
+                </div>
+                <div class="col-sm-4  mb-2"><i class="fas fa-phone-alt"></i>&nbsp;&nbsp;+12345678988</div>
+                <div class="col-sm-4 mb-2"><i class="fas fa-envelope"></i>&nbsp;&nbsp;kvcet@gmail.com</div>
 
-
-    <center>
-        <b>
-            <marquee>
-                <h2>Enjoy, Learn And Live In This Fab Campus</h2>
-            </marquee>
-        </b>
-
-        <div style="max-width:100%">
-            <img class="mySlides" src="/free.jpeg" style="width:100%">
-            <img class="mySlides" src="/blue.jpg" style="width:100%">
-            <img class="mySlides" src="/clg3.jpg" style="width:100%">
-
+            </div>
+            <div class="social-icons p-2">
+                <div class="row">
+                    <div class="col "> <a href="#"><i class="hover:text-purple-700 fab fa-instagram"></i></a></div>
+                    <div class="col "><a href="#"><i class="hover:text-blue-500 fab fa-linkedin"></i></a></div>
+                    <div class="col "><a href="#"><i class="hover:text-green-500 fab fa-whatsapp-square"></i></a></div>
+                    <div class="col "><a href="#"><i class="hover:text-red-500 fab fa-youtube"></i></a></div>
+                </div>
+            </div>
+            <div class="row">
+                <p class="text-white">&copy; 2024 our college. All rights reserved || Developed by
+                    <span>&#10084;</span>Affy
+                </p>
+            </div>
 
         </div>
-    </center>
+    </div>
 
-</body>
-<script>
-    var myIndex = 0;
-    carousel();
+    <script>
+        const bgImages = ["/clg.jpeg", "/clg3.jpg", "/entrance clg.jpg"];
+        function changeBackground() {
+            let index = 0;
+            const courseCall = document.getElementById("course_call");
 
-    function carousel() {
-        var i;
-        var x = document.getElementsByClassName("mySlides");
-        for (i = 0; i < x.length; i++) {
-            x[i].style.display = "none";
+            setInterval(() => {
+                courseCall.style.transition = "background-image 1s ease-out";
+                courseCall.style.backgroundImage = `url('${bgImages[index]}')`;
+                index = (index + 1) % bgImages.length;
+            }, 4000); // Change image every 5 seconds
         }
-        myIndex++;
-        if (myIndex > x.length) { myIndex = 1 }
-        x[myIndex - 1].style.display = "block";
-        setTimeout(carousel, 2000);
-    }
-</script>
+        changeBackground();
+    </script>
+</body>
 
 </html>
