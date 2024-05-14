@@ -16,6 +16,7 @@
         <div class="navigate">
             <img class="logo" src="/kvcet logo.png">
             <nav class="web">
+                <a href="/admission">Admission</a>
                 <a href="">About</a>
                 <a href="/">Home</a>
                 <a href="/contact">Contact</a>
@@ -143,7 +144,7 @@
         e.preventDefault();
         //reset errors
         emailError.textContent = "";
-        passwordError.textContent = '';
+        passwordError.textContent = "";
 
         // get values
 
@@ -162,7 +163,7 @@
                 alert("login successfull !!");
             } if (data.errors) {
                 emailError.textContent = data.errors.email;
-                passwordError.textContent = data.errors.password;
+                passwordError.textContent = "password is incorrect";
             }
             if (data.user) {
                 location.assign('/');

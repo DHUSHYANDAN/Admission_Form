@@ -18,8 +18,13 @@
   
   .logo {
     padding: 5px;
-    height: 100px;
-  }
+    padding-bottom:15px;
+    margin-bottom:15px;
+    height: 100px;}
+.lt{position:relative;}
+.logo-text{color:yellow;
+position:absolute;
+bottom:-7px;left:8px;}
 
 
 
@@ -177,6 +182,7 @@ input[type="password"]::-webkit-outer-spin-button {
   }
   .box-form .left .overlay {
     padding: 180px;
+    padding-right:300px;
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -185,14 +191,13 @@ input[type="password"]::-webkit-outer-spin-button {
     text-shadow: grey;
   }
   .box-form .left .overlay h1 {
-    font-size: 10vmax;
+    font-size: 100px;
+    
     font-weight: 900;
-    margin-top: 40px;
-    margin-bottom: 20px;
     text-shadow:5px 3px 4px rgba(0,0,0,0.6);
     
   }
- 
+
   
   .box-form .right {
     padding: 50px;
@@ -203,6 +208,31 @@ input[type="password"]::-webkit-outer-spin-button {
       width: 100%;
     }
   }
+
+@media (min-width: 700px){
+  .left .hi{display:none;}
+}
+  @media (max-width: 700px) {
+     .hi{display:flex;
+      text-align: center; 
+      align-items: center; 
+      justify-content: center; 
+      padding-top:50px;
+    font-size: 100px;
+    font-weight: 900;
+    color:rgba(255,255,255,0.8);
+    text-shadow: 5px 3px 4px rgba(0,0,0,0.8);
+   }
+
+    .box-form .left .overlay h1{
+      display:none;
+      
+    }
+    .box-form .left .overlay{
+      padding-right:500px;
+    }
+  }
+
   .box-form .right h5 {
     font-size: 6vmax;
     line-height: 0;

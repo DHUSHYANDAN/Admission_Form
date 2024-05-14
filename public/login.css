@@ -21,8 +21,13 @@
 
 .logo {
     padding: 5px;
-    height: 100px;
-}
+    padding-bottom:15px;
+    margin-bottom:15px;
+    height: 100px;}
+.lt{position:relative;}
+.logo-text{color:yellow;
+position:absolute;
+bottom:-2px;}
 
 
 
@@ -52,7 +57,7 @@
 }
 
 
-
+.password.error{color:red;font-size:14px;}
 .email.error{color:red;font-size:14px;}
 body {
     background-image: url("/login.bg.jpeg");

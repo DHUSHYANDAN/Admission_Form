@@ -2,7 +2,7 @@ var express = require("express");
 const mongoose = require("mongoose")
 const authRoutes = require('./routes/authRouter')
 const cookieParser = require('cookie-parser');
-const { requireAuth } = require('./middleware/authmiddleware')
+const { requireAuth, checkUser } = require('./middleware/authmiddleware');
 
 //for conect mongodb
 const dotenv = require('dotenv');
@@ -34,6 +34,7 @@ app.listen(5000, () => {
 })
 
 // routes
+app.get('*', checkUser);
 app.get('/', (req, res) => res.render('home'));
 app.get('/contact', (req, res) => res.render('contact'));
 

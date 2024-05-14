@@ -57,7 +57,7 @@ module.exports.admission_post = async (req, res) => {
 
 
 //for jwt token purpous
-const maxAge = 3 * 24 * 60 * 60;
+const maxAge = 3 * 24 * 60;
 const createToken = (id) => {
     return jwt.sign({ id }, process.env.ACCESS_TOKEN, {
         expiresIn: maxAge
@@ -69,7 +69,7 @@ module.exports.register_post = async (req, res) => {
     try {
         const reguser = await regUser.create({ username, email, password, phonenumber });
         const token = createToken(reguser._id);
-        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+        res.cookie('jwt', token, { httpOnly: true, maxAge:   1 });
         res.status(201).json({ reguser: reguser._id });
     }
     catch (err) {
