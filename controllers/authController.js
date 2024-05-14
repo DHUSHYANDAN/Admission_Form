@@ -1,10 +1,11 @@
 const regUser = require('../model/reguser');
+const adUser=require('../model/aduser')
 const jwt = require('jsonwebtoken');
 
 // handle errors for backend
 const handleErrors = (err) => {
     console.log(err.message, err.code);
-    let errors = { email: '', password: '', username: '', phonenumber: '' };
+    let errors = { email: '', password: '', username: '', phonenumber: '',address:'',course:'' };
 
   // incorrect email
   if (err.message === 'incorrect email') {
@@ -41,7 +42,21 @@ module.exports.login_get = (req, res) => {
 }
 
 
-//for jwt token perpous
+module.exports.admission_post = async (req, res) => {
+    const { username, email, phonenumber,address,course } = req.body;
+
+    try {
+      const aduser = await adUser.create({ username, email, phonenumber,address,course });
+      res.status(201).json(aduser);
+    }
+    catch(err) {
+      const errors = handleErrors(err);
+      res.status(400).json({ errors });
+    }
+}
+
+
+//for jwt token purpous
 const maxAge = 3 * 24 * 60 * 60;
 const createToken = (id) => {
     return jwt.sign({ id }, process.env.ACCESS_TOKEN, {

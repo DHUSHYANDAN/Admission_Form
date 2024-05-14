@@ -36,6 +36,10 @@ app.listen(5000, () => {
 // routes
 app.get('/', (req, res) => res.render('home'));
 app.get('/contact', (req, res) => res.render('contact'));
+
+// app.get('/admission', (req, res) => res.render('admission'));
+
 app.get('/admission', requireAuth,(req, res) => res.render('admission'));
+
 app.use(authRoutes)
 
