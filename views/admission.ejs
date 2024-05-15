@@ -23,13 +23,12 @@
    
    .logo {
 	   padding: 5px;
-	   padding-bottom:15px;
-	   margin-bottom:15px;
+	   
 	   height: 100px;}
 .lt{position:relative;}
 .logo-text{color:yellow;
-position:absolute;
-bottom:-2px;}
+
+padding-left: 6px;}
 
 
 
@@ -180,9 +179,12 @@ box-shadow: 0px 0px 0px 4px rgb(0, 255, 0, 0.3);
 <body class="c">
     <div class="navbars mb-3">
         <div class="navigate">
-            <img class="logo" src="/kvcet logo.png">
-            <nav class="web">
-                <a href="">About</a>
+            <div class="lt">
+                <img class="logo" src="/kvcet logo.png">
+                <p class="logo-text">Welcome <%= user ? user.email : 'Guest' %> </p>
+          
+            </div> <nav class="web">
+                <a href="/about">About</a>
                 <a href="/">Home</a>
                 <a href="/contact">Contact</a>
                 <a href="/login">Login</a>

@@ -38,6 +38,8 @@ app.get('*', checkUser);
 app.get('/', (req, res) => res.render('home'));
 app.get('/contact', (req, res) => res.render('contact'));
 
+app.get('/about', (req, res) => res.render('about'));
+
 // app.get('/admission', (req, res) => res.render('admission'));
 
 app.get('/admission', requireAuth,(req, res) => res.render('admission'));

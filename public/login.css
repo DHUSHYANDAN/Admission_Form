@@ -26,8 +26,8 @@
     height: 100px;}
 .lt{position:relative;}
 .logo-text{color:yellow;
-position:absolute;
-bottom:-2px;}
+position:absolute;left:10px;
+top:90px;}
 
 
 

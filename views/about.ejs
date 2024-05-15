@@ -9,6 +9,61 @@
 	.about-area{
     padding-top: 5%;
 }
+
+/* Navigation Styles */
+.navbars {
+    padding: 5px;
+  }
+  
+  .navigate {
+    display: flex;
+    justify-content: space-between;
+    background-image: url("/banner_bg.png");
+    background-size: cover;
+    
+    align-items: center;
+  }
+  
+  .logo {
+    padding: 5px;
+    
+    height: 100px;}
+
+.logo-text{color:yellow;
+  padding-left:5px;
+}
+
+
+  .web {
+    position: relative;
+    padding: 10px 10px;
+    text-decoration: none;
+    font-size: 17px;
+    overflow: hidden;
+  }
+  a{   text-decoration: none;}
+  
+  .web a {
+    color: #f2f2f2;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    border-radius: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin: 1% 20px;
+  }
+  
+  .web a:hover {
+    background-color: #ddd;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    color: black;
+  }
+
+
+
+
+
 .about-img{
     position:relative;
 }
@@ -22,7 +77,7 @@
     width: 100%;
 }
 .about-text{
-    padding-top: 20%;
+    padding-top: 10%;
 }
 .about-text h2{
     color: black;
@@ -43,13 +98,34 @@
 }
 
 body {
-   background-image: url(orange.jpg);
+   background-image: url(orange.jpeg);
    background-size: cover;
 }
 	 </style>
+
+     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
+
+
+    <div class="navbars mb-3">
+        <div class="navigate">
+            <div class="lt">
+                <img class="logo" src="/kvcet logo.png">
+                <p class="logo-text">Welcome <%= user ? user.email : 'Guest' %> </p>
+            </div>
+            
+            <nav class="web">
+                <a href="/admission">Admission</a>
+                <a href="/register">Register</a>
+                <a href="/">Home</a>
+                <a href="/contact">Contact</a>
+                <a href="/login">Login</a>
+                
+            </nav>
+        </div>
+    </div>
     <div class="about-area">
         <div class="container">
             <div class="row">

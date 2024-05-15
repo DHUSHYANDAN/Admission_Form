@@ -26,13 +26,11 @@
    
    .logo {
 	   padding: 5px;
-	   padding-bottom:15px;
-	   margin-bottom:15px;
+	   
 	   height: 100px;}
-.lt{position:relative;}
+
 .logo-text{color:yellow;
-position:absolute;
-bottom:-2px;}
+}
 
    .web {
 	   position: relative;

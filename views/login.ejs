@@ -15,9 +15,10 @@
     <div class="navbars mb-3">
         <div class="navigate">
             <img class="logo" src="/kvcet logo.png">
+            <p class="logo-text">Welcome <%= user ? user.email : 'Guest' %> </p>
             <nav class="web">
                 <a href="/admission">Admission</a>
-                <a href="">About</a>
+                <a href="/about">About</a>
                 <a href="/">Home</a>
                 <a href="/contact">Contact</a>
                 

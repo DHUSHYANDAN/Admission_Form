@@ -50,13 +50,12 @@ textarea {
    
    .logo {
 	   padding: 5px;
-	   padding-bottom:15px;
-	   margin-bottom:15px;
+	   
 	   height: 100px;}
 .lt{position:relative;}
 .logo-text{color:yellow;
-position:absolute;
-bottom:-2px;}
+    padding-left: 5px;
+}
 
 
 
@@ -109,8 +108,11 @@ body{
 <body>
     <div class="navbars mb-3">
         <div class="navigate">
-            <img class="logo" src="/kvcet logo.png">
-            <nav class="web">
+            <div class="lt">
+                <img class="logo" src="/kvcet logo.png">
+                <p class="logo-text">Welcome <%= user ? user.email : 'Guest' %> </p>
+          
+            </div> <nav class="web">
                 <a href="/admission">Admission</a>
                 <a href="">About</a>
                 <a href="/">Home</a>
