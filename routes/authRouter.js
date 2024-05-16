@@ -12,8 +12,10 @@ router.post('/login',authController.login_post);
 
 router.get('/logout',authController.logout_get);
 
-
 router.post('/admission',authController.admission_post);
+
+router.delete('/admission/verification', authController.verification_delete);
+
 
 
 module.exports=router;

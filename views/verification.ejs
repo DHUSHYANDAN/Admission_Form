@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+   
+    <title>verification</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<style>
+
+  body{
+    background-image: url('/firo.jpeg');
+    background-size: cover; 
+        height: 100%;
+        background-repeat: no-repeat;
+        margin: auto auto auto auto;      
+}
+
+/* Navigation Styles */
+.navbars {
+	   padding: 5px;
+   }
+   
+   .navigate {
+	   display: flex;
+	   justify-content: space-between;
+	   background-image: url("/banner_bg.png");
+	   background-size: cover;
+	   align-items: center;
+   }
+   
+   .logo {
+	   padding: 5px;
+	   
+	   height: 100px;}
+.lt{position:relative;}
+.logo-text{color:yellow;
+    padding-left: 5px;
+}
+
+.textdanger{
+   color: rgba(128, 0, 122, 0.705);
+}
+
+   .web {
+	   position: relative;
+	   padding: 10px 10px;
+	   text-decoration: none;
+	   font-size: 17px;
+	   overflow: hidden;
+   }
+   
+   .web a {
+	   color: #f2f2f2;
+	   padding: 14px 16px;
+	   text-decoration: none;
+	   font-size: 20px;
+	   border-radius: 5px;
+	   padding-top: 5px;
+	   padding-bottom: 5px;
+	   margin: 1% 20px;
+   }
+   
+   .web a:hover {
+	   background-color: #ddd;
+	   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+	   color: black;
+   }
+
+   .container-sm{
+            background-color: rgba(255, 255, 255, 0.991);
+          padding: 50px;
+            border-radius: 10px;
+        }
+        
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+  font-weight: bold;
+   
+}
+button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+@media (min-width: 780px) {
+  .container-sm input,.form-control{ width: 75%;
+}.container-sm{padding-left: px;border: red solid;width: 70%;}
+.b{text-align: left;margin-left: 110px;}
+}
+
+@media (max-width: 580px) {
+  .container{padding: 10%;}
+  
+}
+@media (max-width: 780px) {
+ .b{text-align: left;}
+}
+</style>
+<body>
+    <div class="navbars mb-3">
+        <div class="navigate">
+            <div class="lt">
+                <img class="logo" src="/kvcet logo.png">
+                <p class="logo-text">Welcome <%= user ? user.email : 'Guest' %> </p>
+          
+            </div> <nav class="web">
+                <a href="/admission">Admission</a>
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+            </nav>
+        </div>
+    </div>
+    <div class="container mb-5 ">
+    
+        <div>
+            <div class="container-sm " style="padding-top:40px ;">
+                <center>
+              <h1>Verification</h1>
+              <h5 class="textdanger">  
+             <p style=" font-family: Arial, Helvetica, sans-serif;">* Please verify  the details  provided are accurate according to your knowledge.* </p></h5>
+             <form class="b" data-userid="<%= currentUser._id %>" id="verificationForm">
+                <% if (currentUser) { %>
+                    <div class="form-group mb-2">
+                        <label for="name">Name:</label>
+                        <input type="text" class="form-control" value="<%= currentUser.username %>" id="name" placeholder="" readonly>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="Phone No">Phone No:</label>
+                        <input type="text" class="form-control" id="PhoneNo" value="<%= currentUser.phonenumber %>" placeholder="" readonly>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="email">Email:</label>
+                        <input type="text" class="form-control" id="email" value="<%= currentUser.email %>" placeholder="" readonly>
+                    </div>
+                    <div class="form-group mb-2">
+                        <label for="address">Address:</label>
+                        <textarea class="form-control" id="address" rows="3" readonly><%= currentUser.address %></textarea>
+                    </div>
+                    <div class="form-group mb-4">
+                        <label for="course">Course:</label>
+                        <input type="text" class="form-control" value="<%= currentUser.course %>" id="course" placeholder="" readonly>
+                    </div>
+                    <button type="button" class="mb-5 btn btn-danger" id="deleteButton">Cancel</button>
+                    <button type="submit" class="mb-5 btn btn-primary" id="correct">Submit</button>
+                <% } %>
+            </form>
+        </center>
+        </div>
+        </div>
+    </div>
+</body>
+
+<script>
+   const deleteButton = document.getElementById('deleteButton');
+
+deleteButton.addEventListener('click', async () => {
+    try {
+        const form = document.getElementById('verificationForm');
+        const userId = form.dataset.userid;
+        const res = await fetch(`/admission/verification/${userId}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        
+        if (res.ok) {
+            alert("Verification details deleted successfully!");
+            window.location.href = '/admission';
+        } else {
+            const contentType = res.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                const data = await res.json();
+                alert(data.error);
+            } else {
+                alert("An unexpected error occurred. Please try again later.");
+            }
+        }
+    } catch (err) {
+        console.log(err);
+        alert("An unexpected error occurred. Please try again later.");
+    }
+});
+
+
+    const crtButton = document.getElementById('correct');
+
+crtButton.addEventListener('click', async () => {
+    try {
+        
+        window.location.assign('/'); 
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+
+
+
+
+</script>
+</html>

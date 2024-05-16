@@ -56,13 +56,14 @@ padding-left: 6px;}
 	   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 	   color: black;
    }
+  
 
         body{
           background-image: url('clg3.jpg');
           background-size: cover;
           background-repeat: no-repeat;
           width: 100%;
-          height: 100vh;
+          height: 100%;
         }
         .a {
           
@@ -70,7 +71,10 @@ padding-left: 6px;}
             margin-top: 10px;
             width: 100%;
             border: 2px solid rgba(0, 0, 0, 0.808) rgb(248, 247, 242);
-            
+            justify-content: center;
+            justify-items: center;
+           
+          
             height: 540px;
             border: 2px solid rgb(9, 9, 9);
             background-color:  rgba(0, 0, 0, 0.774);
@@ -173,6 +177,33 @@ box-shadow: 0px 0px 0px 4px rgb(0, 255, 0, 0.3);
 
             box-shadow: 0px 0px 0px 4px rgb(0, 255, 0, 0.3);
         }
+
+        .cen{
+            display: block;
+  margin-left: 25%;
+  margin-right: auto;
+  width: 100%;
+           
+        }
+        @media (min-width: 580px) {
+    .cen {
+        display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+    }
+   
+  }
+         
+        @media (max-width: 580px) {
+    .cen {
+        display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+    }
+   
+  }
     </style>
 </head>
 
@@ -186,44 +217,45 @@ box-shadow: 0px 0px 0px 4px rgb(0, 255, 0, 0.3);
             </div> <nav class="web">
                 <a href="/about">About</a>
                 <a href="/">Home</a>
-                <a href="/contact">Contact</a>
+                
                 <a href="/login">Login</a>
                 <a href="/register">Register</a>
             </nav>
         </div>
     </div>
 
-    <center>
-        <div class="a w-50">
+
+        <div class="a w-75 mb-5 container-sm " >
             <h1
-                style="text-align: center;  width: 350px; color: aliceblue; margin-bottom: 20px;">
+                style="text-align: center;  width: 100%; color: aliceblue; margin-bottom: 20px;">
                 Admission Form</h1>
 
-            <form action="/sign_up" id="form" method="post">
-                <b>
-                    <div class="fi   mt-2">
+            <form action="/sign_up" id="form" class="  " autocomplete="on" method="post">
+                <b class="cen row">
+                    <div class="fi col  mt-2">
 
-                        <input type="text" class="form-control mb-2 w-50" id="username" placeholder="Enter Name "
+                        <input type="text" class="form-control mb-2 " id="username" placeholder="Enter Name "
                             name="Name" />
                         <div class="eror "><span class="nnn"></span></div>
                     </div>
-                    <div class="fi  mt-3">
-                        <input type="text" class="form-control mb-2 w-50" id="phonenumber"
+                    <div class="fi col  mt-3">
+                        <input type="text" class="form-control mb-2 " id="phonenumber"
                             placeholder="Enter Phone number" name="Phonenumber" />
                         <div class="eror"><span class="nnn"></span></div>
                     </div>
-                    <div class="fi ">
-                        <input type="text" class="form-control  mb-2 mt-3 w-50" id="email" placeholder="Enter email"
+                    <div class="fi col">
+                        <input type="text" class="form-control  mb-2 mt-3 " id="email" placeholder="Enter email"
                             name="Email" />
-                        <div class="eror"><span class="nnn"></span></div>
+                       <div class="email error" style="color: rgba(255, 0, 0, 0.957);"></div>
+                        <div class="eror "></div>
                     </div>
-                    <div class="fi   mt-3">
-                        <textarea class="form-control w-50 mt-2 mb-2" placeholder="Enter the Address" id="textarea1"
+                    <div class="fi col-sm  mt-3">
+                        <textarea class="form-control  mt-2 mb-2 " placeholder="Enter the Address" id="textarea1"
                             type="address" name="address" style="height: 50px;"></textarea>
                         <div class="eror"><span class="nnn"></span></div>
                     </div>
-                    <div class="fi mt-2 mb-3">
-                        <select class="form-select mt-3 mb-2 w-50" name="select" id="floatingSelect">
+                    <div class="fi col-sm mt-2 mb-3">
+                        <select class="form-select mt-3 mb-2 " name="select" id="floatingSelect">
                             <option value="0" selected disabled>Course</option>
                             <option value="MCA">MCA</option>
                             <option value="MBA">MBA</option>
@@ -238,12 +270,12 @@ box-shadow: 0px 0px 0px 4px rgb(0, 255, 0, 0.3);
 
 
 
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary ">Submit</button>
 
                 </b>
             </form>
-        </div>
-    </center>
+        </div>  <style> .btn{width: 100px;}</style>
+
     
     <script>
  document.addEventListener("DOMContentLoaded", function () {
@@ -317,40 +349,31 @@ box-shadow: 0px 0px 0px 4px rgb(0, 255, 0, 0.3);
                 input.classList.remove("is-invalid");
                 field.classList.add("success");
                 const errorElement = field.querySelector(".eror");
-                errorElement.textContent = "valid";
+                errorElement.textContent = "";
 }
              //array la pass pandrom so [] kulatha varanum
-             username.addEventListener("keypress", () => checkRequired([username]));
              username.addEventListener("blur", () => checkRequired([username]));
-             phoneNumber.addEventListener("keypress", () => checkRequired([phoneNumber]));
             phoneNumber.addEventListener("blur", () => checkRequired([phoneNumber]));
             email.addEventListener("blur", () => checkRequired([email]));
-            email.addEventListener("keypress", () => checkRequired([email]));
             textarea.addEventListener("blur", () => checkRequired([textarea]));
-            textarea.addEventListener("keypress", () => checkRequired([textarea]));
             statusSelect.addEventListener("blur", checkSelection);
             
            
            
             form.addEventListener("submit", function (event) {
-            
+                event.preventDefault();
                 // Run all validation functions
                 const isRequiredValid = checkRequired(inputs);
                 const isSelectionValid = checkSelection();
-
-
                 // Check if all validations pass
                 if (isRequiredValid && isSelectionValid) {
-                    alert("Form submitted successfully!");
-                } else {
-                    event.preventDefault();
-                    alert("Please complete all fields before submitting the form.");
-                    console.log("Form submission is prevented due to invalid input(s)");
 
+                } else {
+                    alert("Please complete all fields before submitting the form.");
+                  
                 }
             });
 
-            //this for validating the individual properties
             function validateName(name) {
                 return /^[A-Za-z\s]+$/.test(name);
             }
@@ -368,7 +391,41 @@ box-shadow: 0px 0px 0px 4px rgb(0, 255, 0, 0.3);
 
 
         });
-        
+        const form = document.querySelector('form');
+    const emailError = document.querySelector('.email.error');
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        //reset errors
+        emailError.textContent = "";
+
+        // get values
+        const username = form.Name.value;
+        const phonenumber = form.Phonenumber.value;
+        const email = form.Email.value;
+        const address = form.address.value;
+        const course = form.select.value;
+        try {
+            const res = await fetch('/admission', {
+                method: 'POST',
+                body: JSON.stringify({ username, phonenumber, email, address,course }),
+                headers: { 'Content-Type': 'application/json' }
+            })
+            const data = await res.json();
+            if (res.ok) {
+                // Registration successful
+                alert("application received successfully!");
+                location.assign('/admission/verification');
+            } else {
+                // Registration failed
+                if (data.errors) {
+                emailError.textContent = data.errors.email;
+            }
+            }
+        } catch (err) {
+            console.log(err);
+        }
+    });
 
     </script>
 </body>

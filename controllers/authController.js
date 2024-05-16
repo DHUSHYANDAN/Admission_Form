@@ -41,19 +41,48 @@ module.exports.login_get = (req, res) => {
     res.render('login');
 }
 
+//jwt token for verification
+const maxAge2 = 30;
+const createToken2 = (id) => {
+    return jwt.sign({ id }, process.env.ACCESS_TOKEN2, {
+        expiresIn: maxAge2
+    });
+}
 
 module.exports.admission_post = async (req, res) => {
     const { username, email, phonenumber,address,course } = req.body;
 
     try {
       const aduser = await adUser.create({ username, email, phonenumber,address,course });
-      res.status(201).json(aduser);
+      const token2 = createToken2(aduser._id);
+      res.cookie('jwt', token2, { httpOnly: true, maxAge: maxAge2 * 1000 });
+      res.status(201).json({ aduser: aduser._id });
     }
     catch(err) {
       const errors = handleErrors(err);
       res.status(400).json({ errors });
     }
 }
+// Assuming this code is in your routes file
+
+
+
+// Route to handle user deletion
+module.exports.verification_delete = async (req, res) => {
+    const userId = req.params.id;
+    try {
+        const deletedAdUser = await adUser.findByIdAndDelete(userId);
+        
+        if (!deletedAdUser) {
+            return res.status(404).json({ error: 'User not found' });
+        }
+        res.status(200).json(deletedAdUser);
+    } catch (err) {
+        res.status(400).json({ error: err.message }); 
+    }
+};
+
+
 
 
 //for jwt token purpous

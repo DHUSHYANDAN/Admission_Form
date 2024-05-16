@@ -1,8 +1,10 @@
 var express = require("express");
 const mongoose = require("mongoose")
 const authRoutes = require('./routes/authRouter')
+const adUser=require('./model/aduser')
 const cookieParser = require('cookie-parser');
 const { requireAuth, checkUser } = require('./middleware/authmiddleware');
+const { requireAdAuth, checkUser2 } = require('./middleware/adauthmiddleware');
 
 //for conect mongodb
 const dotenv = require('dotenv');
@@ -35,14 +37,25 @@ app.listen(5000, () => {
 
 // routes
 app.get('*', checkUser);
+
+app.use(authRoutes);
+
 app.get('/', (req, res) => res.render('home'));
-app.get('/contact', (req, res) => res.render('contact'));
 
 app.get('/about', (req, res) => res.render('about'));
 
-// app.get('/admission', (req, res) => res.render('admission'));
-
 app.get('/admission', requireAuth,(req, res) => res.render('admission'));
 
-app.use(authRoutes)
+ app.get('/admission/verification',requireAdAuth, checkUser2,
+  async (req,res) => {
+    try {
+        const adData = await adUser.find();
+        res.render("verification", { adData: adData, currentUser: res.locals.user }); 
+      } catch (err) {
+        console.error(err);
+        res.status(500).send("Internal Server Error");
+      }
+} 
+ );
+
 
