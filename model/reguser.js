@@ -42,5 +42,8 @@ reguserShema.statics.login = async function (email, password) {
 }
 
 
+
+
+
 const regUsers = mongoose.model('Reg_users', reguserShema);
 module.exports = regUsers;

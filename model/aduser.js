@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { isEmail, isMobilePhone } = require('validator');
 const schema=mongoose.Schema;
 
-const aduserShema=new schema({
+const aduserSchema=new schema({
     username: { type: String, required: [true, 'Please enter an username'], minlength: 3 },
 
     email: { type: String, required: [true, 'Please enter an email'], unique: true, lowercase: true, validate: [isEmail, "please enter a valid email"] },
@@ -17,5 +17,12 @@ const aduserShema=new schema({
 },{
     timestamps:true
 });
-const adUsers=mongoose.model('Admission_users',aduserShema);
+
+
+//static method to delete user
+aduserSchema.statics.deleteByFields = async function (email, username, phonenumber, address, course) {
+    const aduser = await this.findOneAndDelete({ email, username, phonenumber, address, course });
+    return aduser;
+};
+const adUsers=mongoose.model('Admission_users',aduserSchema);
  module.exports=adUsers;

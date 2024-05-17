@@ -69,18 +69,18 @@ module.exports.admission_post = async (req, res) => {
 
 // Route to handle user deletion
 module.exports.verification_delete = async (req, res) => {
-    const userId = req.params.id;
+    const { email, username, phonenumber, address, course } = req.body;
     try {
-        const deletedAdUser = await adUser.findByIdAndDelete(userId);
-        
+        const deletedAdUser = await adUser.deleteByFields(email, username, phonenumber, address, course);
         if (!deletedAdUser) {
             return res.status(404).json({ error: 'User not found' });
         }
         res.status(200).json(deletedAdUser);
     } catch (err) {
-        res.status(400).json({ error: err.message }); 
+        res.status(400).json({ error: err.message });
     }
 };
+
 
 
 
@@ -115,7 +115,7 @@ module.exports.login_post =async (req, res) => {
     try {
         const user = await regUser.login(email,password);
         const token = createToken(user._id);
-        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+        res.cookie('jwt', token, { httpOnly: true, maxAge: 86400000 });
         res.status(200).json({user:user._id});
     }
     catch(err) {

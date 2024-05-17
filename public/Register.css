@@ -1,15 +1,20 @@
+
+
 .btn:hover{
     
     cursor: grab;
   }
 
+  
    /* Navigation Styles */
    .navbars {
     padding: 5px;
+ 
   }
   
   .navigate {
     display: flex;
+  
     justify-content: space-between;
     background-image: url("/banner_bg.png");
     background-size: cover;
@@ -17,18 +22,21 @@
   }
   
   .logo {
-    padding: 5px;
-    
-    height: 100px;}
-
-.logo-text{color:yellow;
-  padding-left:5px;
-}
-
-
+    padding: 6px;
+    width:200px;
+    height: auto;
+  }
+ 
+  .logo-text {
+    color: yellow;
+    padding-left: 5px;
+  }
+  
   .web {
     position: relative;
-    padding: 10px 10px;
+  
+    padding: 10px;
+    
     text-decoration: none;
     font-size: 17px;
     overflow: hidden;
@@ -52,6 +60,81 @@
   }
 
 
+  .menu-line {
+    height: 4px;
+    width: 20px;
+    margin-bottom: 3px;
+    margin-right: 20px;
+    background-color: white;
+  }
+  
+  .menu {
+    display: none;
+    cursor: pointer;
+  }
+  
+  @media (max-width: 790px) {
+    .web a {
+      display: none;
+    }
+  
+    .menu {
+      display: block;
+    }
+    .logo{
+      max-width:100%;
+    }
+    .navmobg{
+      background-color: rgba(0, 0, 0, 0.6);
+      height:100%;
+      width:100%;
+      position:absolute;
+      display:none;
+      z-index:2;
+    }
+  }
+  @media (min-width:790px){
+    .navmob{
+      display:none;
+    }
+  }
+  @media (max-width:520px){
+    .navmob{
+      width: 50%;
+    }
+  }
+  @media (min-width:520px){
+     .navmob{
+      width: 250px;
+    }
+  }
+  .webmob a{
+    display:block;
+    background:rgba(0, 0, 0, 0.8); 
+    padding: 15px 0px 15px 0px ;
+    text-align:center;
+    text-decoration: none;
+    color:white;
+    font-size: 20px;
+    border-radius: 5px;
+    margin: 8% 20px;
+    }
+    .webmob a:hover{
+      background:red;
+      color:white;
+    }
+  .ltmob{background-image: url("/banner_bg.png");
+  padding:3px;}
+ 
+  .navmob {
+    background-color: white;
+    height:100%;
+    
+    position:absolute;
+  
+    border: solid 1px lightgreen;
+  }
+  *{z-index:1;position:relative;} 
 
 
 //design for register
@@ -267,31 +350,30 @@ input[type="password"]::-webkit-outer-spin-button {
     background:green;
     color:white;
   }
+/* Footer Styles */
+.footer {
+  text-align: center;
+  padding: 1px;
+  margin:5px;
+  border-radius:15px;
+}
 
-  /* Footer Styles */
-  .footer {
-    text-align: center;
-    padding: 1px;
-    margin:5px;
-    border-radius:15px;
-  }
-  
-  .social-icons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .social-icons a {
-    color: white;
-    margin: 0 10px;
-    font-size: 24px;
-    text-decoration: none;
-    align-items: center;
-  }
-  
-  .copyright {
-    font-size: 14px;
-    color: #666;
-  }
+.social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.social-icons a {
+  color: white;
+  margin: 0 10px;
+  font-size: 24px;
+  text-decoration: none;
+  align-items: center;
+}
+
+.copyright {
+  font-size: 14px;
+  color: #666;
+}
