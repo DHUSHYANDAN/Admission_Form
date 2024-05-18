@@ -74,7 +74,7 @@
         cursor: pointer;
       }
       
-      @media (max-width: 790px) {
+      @media (max-width: 880px) {
         .web a {
           display: none;
         }
@@ -223,7 +223,7 @@ input[type="password"]::-webkit-outer-spin-button {
     display:flex;
     border-radius: 5px;
     background-size: cover;
-    height:60%;
+    height:100%;
     background-image:url('/blue.jpg');
 }
 
