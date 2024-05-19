@@ -109,7 +109,7 @@
 	  }
 	  @media (min-width:520px){
 		 .navmob{
-		  width: 250px;
+		  max-width: 250px;
 		}
 	  }
 	  .webmob a{
