@@ -1,6 +1,7 @@
 const regUser = require('../model/reguser');
 const adUser=require('../model/aduser')
 const jwt = require('jsonwebtoken');
+const axios = require('axios');
 
 // handle errors for backend
 const handleErrors = (err) => {
@@ -53,6 +54,14 @@ module.exports.admission_post = async (req, res) => {
     const { username, email, phonenumber,address,course } = req.body;
 
     try {
+        const hunterApiKey = "bfd746001b26869f3839d939ea134f345d8c5c3b"; 
+        const hunterApiUrl = `https://api.hunter.io/v2/email-verifier?email=${email}&api_key=${hunterApiKey}`;
+        const emailVerificationResponse = await axios.get(hunterApiUrl);
+
+        if (emailVerificationResponse.data.data.result !== "deliverable") {
+            return res.status(400).json({ errors: { email: 'It is not a valid Email' } });
+        }
+
       const aduser = await adUser.create({ username, email, phonenumber,address,course });
       const token2 = createToken2(aduser._id);
       res.cookie('jwt', token2, { httpOnly: true, maxAge: maxAge2 * 1000 });
@@ -96,18 +105,24 @@ const createToken = (id) => {
 module.exports.register_post = async (req, res) => {
     const { username, email, password, phonenumber } = req.body;
     try {
+        // Verify email using Hunter API
+        const hunterApiKey = "bfd746001b26869f3839d939ea134f345d8c5c3b"; 
+        const hunterApiUrl = `https://api.hunter.io/v2/email-verifier?email=${email}&api_key=${hunterApiKey}`;
+        const emailVerificationResponse = await axios.get(hunterApiUrl);
+
+        if (emailVerificationResponse.data.data.result !== "deliverable") {
+            return res.status(400).json({ errors: { email: 'It is not a valid Email' } });
+        }
+
         const reguser = await regUser.create({ username, email, password, phonenumber });
         const token = createToken(reguser._id);
-        res.cookie('jwt', token, { httpOnly: true, maxAge:   1 });
+        res.cookie('jwt', token, { httpOnly: true, maxAge: 1 });
         res.status(201).json({ reguser: reguser._id });
-    }
-    catch (err) {
-
+    } catch (err) {
         const errors = handleErrors(err);
-        res.status(400).json(errors);
-
+        res.status(400).json({errors});
     }
-}
+};
 
 module.exports.login_post =async (req, res) => {
     const { email, password } = req.body;

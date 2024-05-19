@@ -113,7 +113,8 @@ const mobopen=document.querySelector('.menu');
                     <div class="fi ">
                         <input type="text" class="form-control  mb-1 " id="email" placeholder="Enter email"
                             name="Email" />
-                        <div class="eror email error"></div>
+                        <div class="eror "></div>
+                        <div class=" email error"></div>
 
                     </div>
                     <div class="fi flex mt-1 ">
@@ -297,10 +298,9 @@ const mobopen=document.querySelector('.menu');
                 alert("Registered successfully!");
             } else {
                 // Registration failed
-                if (data.email) {
-                    emailError.textContent = data.email;
-                    // alert(data.email);
-                }
+                if (data.errors && data.errors.email) {
+               emailError.textContent = data.errors.email;
+    }
             }
             if (data.reguser) {
                 location.assign('/');

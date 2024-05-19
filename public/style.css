@@ -77,7 +77,7 @@
 		cursor: pointer;
 	  }
 	  
-	  @media (max-width: 790px) {
+	  @media (max-width: 800px) {
 		.web a {
 		  display: none;
 		}
@@ -97,7 +97,7 @@
 		  z-index:2;
 		}
 	  }
-	  @media (min-width:790px){
+	  @media (min-width:800px){
 		.navmob{
 		  display:none;
 		}

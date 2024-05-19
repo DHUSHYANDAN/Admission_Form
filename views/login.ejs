@@ -250,9 +250,9 @@
             if (res.ok) {
                 // Registration successful
                 alert("login successfull !!");
-            } if (data.errors) {
+            } if (data.errors ) {
                 emailError.textContent = data.errors.email;
-                passwordError.textContent = "password is incorrect";
+                passwordError.textContent ="Entered password is incorrect";
             }
             if (data.user) {
                 location.assign('/');
