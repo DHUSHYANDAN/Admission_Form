@@ -223,8 +223,7 @@ button {
                  <div class="ltmob" style="display: flex;justify-content: space-between;">
                      <div>
                          <img class="logo" src="/kvcet logo.png">
-                         <p class="logo-text">Welcome <%= user ? user.email : 'Guest' %>
-                         </p>
+                       
                      </div>
                      <button id="redmob" class="icon-red"><i class="fa-solid fa-x "></i></button>
                  </div>
@@ -243,8 +242,7 @@ button {
              <div class="navigate">
                  <div class="lt">
                      <img class="logo" src="/kvcet logo.png">
-                     <p class="logo-text">Welcome <%= user ? user.email : 'Guest' %>
-                     </p>
+                    
                  </div>
      
                  <nav class="web">
@@ -345,6 +343,7 @@ const crtButton = document.getElementById('correct');
 crtButton.addEventListener('click', async (e) => {
     e.preventDefault();
     try {
+      alert("Thankyou form applied successfully!")
         window.location.assign('/');
     } catch (err) {
         console.log(err);

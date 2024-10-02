@@ -2,9 +2,9 @@ const jwt = require('jsonwebtoken');
 const adUsers = require('../model/aduser');
 
 const requireAdAuth = (req, res, next) => {
-  const token2 = req.cookies.jwt;
+  const token2 = req.cookies.admission_token;  
 
-  // check json web token exists & is verified
+  // Check if the admission token exists & is verified
   if (token2) {
     jwt.verify(token2, process.env.ACCESS_TOKEN2, (err, decodedToken) => {
       if (err) {
@@ -19,8 +19,9 @@ const requireAdAuth = (req, res, next) => {
     res.redirect('/admission');
   }
 };
+
 const checkUser2 = (req, res, next) => {
-  const token2 = req.cookies.jwt;
+  const token2 = req.cookies.admission_token; 
   if (token2) {
     jwt.verify(token2, process.env.ACCESS_TOKEN2, async (err, decodedToken) => {
       if (err) {
@@ -38,6 +39,4 @@ const checkUser2 = (req, res, next) => {
   }
 };
 
-
-module.exports = { requireAdAuth, checkUser2 };
-
+module.exports = { requireAdAuth ,checkUser2};

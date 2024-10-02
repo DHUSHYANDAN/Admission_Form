@@ -12,7 +12,7 @@ const aduserSchema=new schema({
         maxlength: [10, 'Maximum phone number length is 10 numbers'],
         validate: [isMobilePhone, "Please enter a valid phone number"]
     },
-    address:{type:String,required:true,minlength:[3,'please enter the address']},
+    address:{type:String,required:true,minlength:[1,'please enter the address']},
     course: { type: String, required: true, enum: ['MCA', 'MBA', 'M Tech', 'B Tech', 'BE Civil', 'Robotics', 'AI'] }
 },{
     timestamps:true
